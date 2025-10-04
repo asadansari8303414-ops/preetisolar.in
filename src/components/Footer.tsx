@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Sun, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import logo from "@/assets/preeti-solar-logo.jpeg";
 
 const Footer = () => {
   const scrollToSection = (id: string) => {
@@ -15,12 +16,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Sun className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold">Preeti Solar</span>
+            <div className="flex items-center mb-4">
+              <img src={logo} alt="Preeti Solar" className="h-16 w-auto" />
             </div>
             <p className="text-muted-foreground">
-              Uttar Pradesh mein solar energy solutions provide karte hain. Clean energy ke saath
+              Uttar Pradesh mein solar energy aur atta chakki solutions provide karte hain. Clean energy ke saath
               ek bright future banayein.
             </p>
           </div>
@@ -48,8 +48,20 @@ const Footer = () => {
                 to="/calculator"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                Calculator
+                Solar Calculator
               </Link>
+              <Link
+                to="/chakki-calculator"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Chakki Calculator
+              </Link>
+              <button
+                onClick={() => scrollToSection("gallery")}
+                className="text-left text-muted-foreground hover:text-primary transition-colors"
+              >
+                Gallery
+              </button>
             </div>
           </div>
 
@@ -58,6 +70,7 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Services</h3>
             <div className="flex flex-col gap-2 text-muted-foreground">
               <p>Solar Panel Installation</p>
+              <p>Atta Chakki Installation</p>
               <p>Maintenance & Support</p>
               <p>Consultation</p>
               <p>Government Subsidy Help</p>
@@ -70,15 +83,27 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="h-4 w-4" />
-                <span>+91 98765 43210</span>
+                <span>9277302997</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4" />
-                <span>info@preetisolar.com</span>
+                <span>preetisolar46@gmail.com</span>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <MapPin className="h-4 w-4" />
-                <span>Uttar Pradesh, India</span>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-start gap-2 text-muted-foreground">
+                  <MapPin className="h-4 w-4 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium">Prayagraj Branch</p>
+                    <p className="text-sm">Prayagraj, Uttar Pradesh</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2 text-muted-foreground">
+                  <MapPin className="h-4 w-4 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium">Varanasi Branch</p>
+                    <p className="text-sm">Varanasi, Uttar Pradesh</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

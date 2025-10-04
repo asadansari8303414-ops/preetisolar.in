@@ -3,11 +3,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Sun, Wrench, Users, Leaf, TrendingDown, Shield, Phone, Mail, MapPin } from "lucide-react";
+import { Sun, Wrench, Users, Leaf, TrendingDown, Shield, Phone, Mail, MapPin, Cog } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import FinanceSection from "@/components/FinanceSection";
+import Gallery from "@/components/Gallery";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Naam zaruri hai").max(100, "Naam 100 characters se kam hona chahiye"),
@@ -47,10 +49,10 @@ const Index = () => {
           <div className="animate-fade-in">
             <Sun className="h-20 w-20 text-primary mx-auto mb-6" />
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              Solar Energy Se Apna Ghar Roshan Karein
+              Solar Energy & Atta Chakki Solutions
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Uttar Pradesh mein best solar panel installation. Government subsidy ke saath bijli ke
+              Uttar Pradesh mein best solar panel aur atta chakki installation. Government subsidy ke saath bijli ke
               bill mein 80% tak ki saving karein!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -63,9 +65,9 @@ const Index = () => {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() =>
+onClick={() =>
                   window.open(
-                    "https://wa.me/919876543210?text=Hello%20Preeti%20Solar,%20mujhe%20solar%20installation%20ke%20baare%20mein%20jaanna%20hai",
+                    "https://wa.me/919277302997?text=Hello%20Preeti%20Solar%2C%20mujhe%20jaankari%20chahiye",
                     "_blank"
                   )
                 }
@@ -83,11 +85,11 @@ const Index = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Humare Services</h2>
             <p className="text-muted-foreground text-lg">
-              Complete solar solutions aapke ghar aur business ke liye
+              Solar energy aur atta chakki - dono solutions ek jagah
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
                 <Sun className="h-12 w-12 text-primary mb-4" />
@@ -120,9 +122,26 @@ const Index = () => {
                 </CardDescription>
               </CardHeader>
             </Card>
+
+            <Card className="hover:shadow-lg transition-shadow border-primary/20">
+              <CardHeader>
+                <Cog className="h-12 w-12 text-primary mb-4" />
+                <CardTitle>Atta Chakki Solutions</CardTitle>
+                <CardDescription>
+                  Premium quality atta chakki installation. 9kW se shuru, sabhi motor brands available.
+                  Asan EMI par bhi available.
+                </CardDescription>
+              </CardHeader>
+            </Card>
           </div>
         </div>
       </section>
+
+      {/* Finance Section */}
+      <FinanceSection />
+
+      {/* Gallery Section */}
+      <Gallery />
 
       {/* Benefits Section */}
       <section id="benefits" className="py-20 bg-muted/30">
@@ -188,7 +207,7 @@ const Index = () => {
                     <Phone className="h-6 w-6 text-primary mt-1" />
                     <div>
                       <h3 className="font-semibold mb-1">Phone</h3>
-                      <p className="text-muted-foreground">+91 98765 43210</p>
+                      <p className="text-muted-foreground">9277302997</p>
                       <p className="text-sm text-muted-foreground">Mon-Sat, 9AM-7PM</p>
                     </div>
                   </div>
@@ -201,7 +220,7 @@ const Index = () => {
                     <Mail className="h-6 w-6 text-primary mt-1" />
                     <div>
                       <h3 className="font-semibold mb-1">Email</h3>
-                      <p className="text-muted-foreground">info@preetisolar.com</p>
+                      <p className="text-muted-foreground">preetisolar46@gmail.com</p>
                       <p className="text-sm text-muted-foreground">24-48 hours response time</p>
                     </div>
                   </div>
@@ -213,8 +232,9 @@ const Index = () => {
                   <div className="flex items-start gap-4">
                     <MapPin className="h-6 w-6 text-primary mt-1" />
                     <div>
-                      <h3 className="font-semibold mb-1">Location</h3>
-                      <p className="text-muted-foreground">Uttar Pradesh, India</p>
+                      <h3 className="font-semibold mb-1">Locations</h3>
+                      <p className="text-muted-foreground">Prayagraj Branch</p>
+                      <p className="text-muted-foreground">Varanasi Branch</p>
                       <p className="text-sm text-muted-foreground">Serving across UP</p>
                     </div>
                   </div>

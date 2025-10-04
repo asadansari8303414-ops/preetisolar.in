@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import { Sun, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import logo from "@/assets/preeti-solar-logo.jpeg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +22,8 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2 text-xl font-bold text-primary">
-            <Sun className="h-8 w-8" />
-            <span>Preeti Solar</span>
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="Preeti Solar" className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -54,8 +54,22 @@ const Navbar = () => {
                 isActive("/calculator") ? "text-primary font-medium" : "text-foreground"
               }`}
             >
-              Calculator
+              Solar Calculator
             </Link>
+            <Link
+              to="/chakki-calculator"
+              className={`transition-colors hover:text-primary ${
+                isActive("/chakki-calculator") ? "text-primary font-medium" : "text-foreground"
+              }`}
+            >
+              Chakki Calculator
+            </Link>
+            <button
+              onClick={() => scrollToSection("gallery")}
+              className="transition-colors hover:text-primary text-foreground"
+            >
+              Gallery
+            </button>
             <button
               onClick={() => scrollToSection("contact")}
               className="transition-colors hover:text-primary text-foreground"
@@ -65,7 +79,7 @@ const Navbar = () => {
             <Button
               onClick={() =>
                 window.open(
-                  "https://wa.me/919876543210?text=Hello%20Preeti%20Solar,%20mujhe%20solar%20installation%20ke%20baare%20mein%20jaanna%20hai",
+                  "https://wa.me/919277302997?text=Hello%20Preeti%20Solar%2C%20mujhe%20jaankari%20chahiye",
                   "_blank"
                 )
               }
@@ -116,8 +130,23 @@ const Navbar = () => {
                   isActive("/calculator") ? "text-primary font-medium" : "text-foreground"
                 }`}
               >
-                Calculator
+                Solar Calculator
               </Link>
+              <Link
+                to="/chakki-calculator"
+                onClick={() => setIsOpen(false)}
+                className={`transition-colors hover:text-primary ${
+                  isActive("/chakki-calculator") ? "text-primary font-medium" : "text-foreground"
+                }`}
+              >
+                Chakki Calculator
+              </Link>
+              <button
+                onClick={() => scrollToSection("gallery")}
+                className="text-left transition-colors hover:text-primary text-foreground"
+              >
+                Gallery
+              </button>
               <button
                 onClick={() => scrollToSection("contact")}
                 className="text-left transition-colors hover:text-primary text-foreground"
@@ -127,7 +156,7 @@ const Navbar = () => {
               <Button
                 onClick={() => {
                   window.open(
-                    "https://wa.me/919876543210?text=Hello%20Preeti%20Solar,%20mujhe%20solar%20installation%20ke%20baare%20mein%20jaanna%20hai",
+                    "https://wa.me/919277302997?text=Hello%20Preeti%20Solar%2C%20mujhe%20jaankari%20chahiye",
                     "_blank"
                   );
                   setIsOpen(false);
