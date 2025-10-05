@@ -64,12 +64,14 @@ const Navbar = () => {
             >
               Chakki Calculator
             </Link>
-            <button
-              onClick={() => scrollToSection("gallery")}
-              className="transition-colors hover:text-primary text-foreground"
+            <Link
+              to="/gallery"
+              className={`transition-colors hover:text-primary ${
+                isActive("/gallery") ? "text-primary font-medium" : "text-foreground"
+              }`}
             >
               Gallery
-            </button>
+            </Link>
             <button
               onClick={() => scrollToSection("contact")}
               className="transition-colors hover:text-primary text-foreground"
@@ -141,12 +143,15 @@ const Navbar = () => {
               >
                 Chakki Calculator
               </Link>
-              <button
-                onClick={() => scrollToSection("gallery")}
-                className="text-left transition-colors hover:text-primary text-foreground"
+              <Link
+                to="/gallery"
+                onClick={() => setIsOpen(false)}
+                className={`transition-colors hover:text-primary ${
+                  isActive("/gallery") ? "text-primary font-medium" : "text-foreground"
+                }`}
               >
                 Gallery
-              </button>
+              </Link>
               <button
                 onClick={() => scrollToSection("contact")}
                 className="text-left transition-colors hover:text-primary text-foreground"

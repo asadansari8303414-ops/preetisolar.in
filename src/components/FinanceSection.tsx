@@ -14,12 +14,12 @@ const FinanceSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-          {/* Surkama Finance */}
+          {/* Svakarma Finance */}
           <Card className="border-primary/20 hover:border-primary transition-colors">
             <CardHeader>
               <div className="flex items-center gap-2 mb-2">
                 <CreditCard className="h-8 w-8 text-primary" />
-                <CardTitle>Surkama Finance</CardTitle>
+                <CardTitle>Svakarma Finance</CardTitle>
               </div>
               <CardDescription>Quick approval with minimal paperwork</CardDescription>
             </CardHeader>

@@ -2,14 +2,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Sun, Wrench, Users, Leaf, TrendingDown, Shield, Phone, Mail, MapPin, Cog, Zap, FileText, Search, Settings, ShieldCheck, Award, Smartphone, Clock, GraduationCap, Battery } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import FinanceSection from "@/components/FinanceSection";
-import Gallery from "@/components/Gallery";
+import Reviews from "@/components/Reviews";
+import ServiceDetailModal from "@/components/ServiceDetailModal";
+import BenefitDetailModal from "@/components/BenefitDetailModal";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Naam zaruri hai").max(100, "Naam 100 characters se kam hona chahiye"),
@@ -23,6 +27,9 @@ type ContactForm = z.infer<typeof contactSchema>;
 
 const Index = () => {
   const { toast } = useToast();
+  const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [selectedBenefit, setSelectedBenefit] = useState<string | null>(null);
+  
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -67,7 +74,7 @@ const Index = () => {
               <Button
                 size="lg"
                 variant="outline"
-onClick={() =>
+                onClick={() =>
                   window.open(
                     "https://wa.me/919277302997?text=Hello%20Preeti%20Solar%2C%20mujhe%20jaankari%20chahiye",
                     "_blank"
@@ -85,14 +92,14 @@ onClick={() =>
       <section id="services" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Humare Services</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Humare Services - Detail Mein Jaanein</h2>
             <p className="text-muted-foreground text-lg">
-              Solar energy aur atta chakki - dono solutions ek jagah
+              Solar energy aur atta chakki - dono solutions ek jagah. Click karein detail ke liye!
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300">
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300 cursor-pointer" onClick={() => setSelectedService("solar-installation")}>
               <CardHeader>
                 <Zap className="h-12 w-12 text-primary mb-4" />
                 <CardTitle>Solar System Installation</CardTitle>
@@ -103,7 +110,7 @@ onClick={() =>
               </CardHeader>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300">
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300 cursor-pointer" onClick={() => setSelectedService("subsidy-assistance")}>
               <CardHeader>
                 <FileText className="h-12 w-12 text-accent mb-4" />
                 <CardTitle>Solar Subsidy Assistance</CardTitle>
@@ -114,7 +121,7 @@ onClick={() =>
               </CardHeader>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300">
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300 cursor-pointer" onClick={() => setSelectedService("site-inspection")}>
               <CardHeader>
                 <Search className="h-12 w-12 text-secondary mb-4" />
                 <CardTitle>Site Inspection & Load Assessment</CardTitle>
@@ -125,7 +132,7 @@ onClick={() =>
               </CardHeader>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300">
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300 cursor-pointer" onClick={() => setSelectedService("maintenance")}>
               <CardHeader>
                 <Wrench className="h-12 w-12 text-primary mb-4" />
                 <CardTitle>Maintenance & Support</CardTitle>
@@ -136,7 +143,7 @@ onClick={() =>
               </CardHeader>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300">
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300 cursor-pointer" onClick={() => setSelectedService("custom-solutions")}>
               <CardHeader>
                 <Settings className="h-12 w-12 text-accent mb-4" />
                 <CardTitle>Customized Solar Solutions</CardTitle>
@@ -147,7 +154,7 @@ onClick={() =>
               </CardHeader>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300 border-primary/20">
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300 border-primary/20 cursor-pointer" onClick={() => setSelectedService("chakki")}>
               <CardHeader>
                 <Cog className="h-12 w-12 text-primary mb-4" />
                 <CardTitle>Atta Chakki Solutions</CardTitle>
@@ -164,103 +171,83 @@ onClick={() =>
       {/* Finance Section */}
       <FinanceSection />
 
-      {/* Gallery Section */}
-      <Gallery />
+      {/* Reviews Section */}
+      <Reviews />
 
       {/* Benefits Section */}
       <section id="benefits" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Kyon Choose Karein Humein</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Kyon Choose Karein Humein - Benefits Detail Mein</h2>
             <p className="text-muted-foreground text-lg">
-              Best quality, service aur support - sab kuch ek jagah
+              Har benefit ko detail mein samjhein - click karein!
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <ShieldCheck className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Government Approved Vendor</h3>
-              <p className="text-sm text-muted-foreground">
-                Trustworthy & registered for subsidy. Puri transparency ke saath kaam karte hain.
+            <Card className="p-6 rounded-lg bg-card hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedBenefit("govt-approved")}>
+              <ShieldCheck className="h-12 w-12 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Government Approved Vendor</h3>
+              <p className="text-muted-foreground">
+                Trustworthy & registered for subsidy. Aapki subsidy 100% pakki hai.
               </p>
-            </div>
+            </Card>
 
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                <Award className="h-8 w-8 text-accent" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">High-Quality Components</h3>
-              <p className="text-sm text-muted-foreground">
+            <Card className="p-6 rounded-lg bg-card hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedBenefit("quality-components")}>
+              <Award className="h-12 w-12 text-secondary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">High-Quality Components</h3>
+              <p className="text-muted-foreground">
                 Tier-1 panels & branded inverters (Havells, Loom, Luminous). Best quality guarantee.
               </p>
-            </div>
+            </Card>
 
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <TrendingDown className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">
-                <span className="text-2xl font-bold text-primary">90%</span> Tak Bill Mein Saving
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Long-term savings with 25-year warranty panels. Apne paise bachayein.
+            <Card className="p-6 rounded-lg bg-card hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedBenefit("bill-saving")}>
+              <TrendingDown className="h-12 w-12 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Save Up to 90% Tak Bill Mein Saving</h3>
+              <p className="text-muted-foreground">
+                Long-term savings with 25-year warranty panels. Bijli ka bill 10% tak aa jayega!
               </p>
-            </div>
+            </Card>
 
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="h-16 w-16 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
-                <Smartphone className="h-8 w-8 text-secondary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Smart Monitoring App</h3>
-              <p className="text-sm text-muted-foreground">
-                Check power generation live on your phone. Real-time monitoring aur alerts.
+            <Card className="p-6 rounded-lg bg-card hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedBenefit("smart-monitoring")}>
+              <Smartphone className="h-12 w-12 text-accent mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Smart Monitoring App</h3>
+              <p className="text-muted-foreground">
+                Check power generation live on your phone. Real-time data dekhen.
               </p>
-            </div>
+            </Card>
 
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                <Clock className="h-8 w-8 text-accent" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">
-                Quick Installation (<span className="text-primary font-bold">7-10 Days</span>)
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Fast professional installation within 7–10 working days after approval.
+            <Card className="p-6 rounded-lg bg-card hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedBenefit("quick-installation")}>
+              <Clock className="h-12 w-12 text-secondary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Quick Installation (7-10 Days)</h3>
+              <p className="text-muted-foreground">
+                Within 7–10 working days after approval. Fast aur professional service.
               </p>
-            </div>
+            </Card>
 
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <GraduationCap className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Expert Team</h3>
-              <p className="text-sm text-muted-foreground">
-                Certified engineers & trained professionals. Experience aur expertise ka guarantee.
+            <Card className="p-6 rounded-lg bg-card hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedBenefit("expert-team")}>
+              <GraduationCap className="h-12 w-12 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Expert Team</h3>
+              <p className="text-muted-foreground">
+                Certified engineers & trained professionals. Experience par bharosa karein.
               </p>
-            </div>
+            </Card>
 
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="h-16 w-16 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
-                <Leaf className="h-8 w-8 text-secondary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Eco-Friendly Energy</h3>
-              <p className="text-sm text-muted-foreground">
-                Reduce carbon footprint and save the planet. Clean energy ka use karein.
+            <Card className="p-6 rounded-lg bg-card hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedBenefit("eco-friendly")}>
+              <Leaf className="h-12 w-12 text-accent mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Eco-Friendly Energy</h3>
+              <p className="text-muted-foreground">
+                Reduce carbon footprint and save the planet. Dharti ko bachayein!
               </p>
-            </div>
+            </Card>
 
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                <Shield className="h-8 w-8 text-accent" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Government Subsidy</h3>
-              <p className="text-sm text-muted-foreground">
-                UP government se subsidy benefit lein. 1KW par ₹45,000 tak ka subsidy available.
+            <Card className="p-6 rounded-lg bg-card hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedBenefit("govt-subsidy")}>
+              <Shield className="h-12 w-12 text-secondary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Government Subsidy (₹78,000 Tak)</h3>
+              <p className="text-muted-foreground">
+                PM Surya Ghar scheme ke under subsidy milegi. Hum sab process karenge.
               </p>
-            </div>
+            </Card>
           </div>
         </div>
       </section>
@@ -425,6 +412,18 @@ onClick={() =>
           </div>
         </div>
       </section>
+
+      {/* Modals */}
+      <ServiceDetailModal 
+        open={!!selectedService} 
+        onOpenChange={(open) => !open && setSelectedService(null)} 
+        serviceType={selectedService || ""} 
+      />
+      <BenefitDetailModal 
+        open={!!selectedBenefit} 
+        onOpenChange={(open) => !open && setSelectedBenefit(null)} 
+        benefitType={selectedBenefit || ""} 
+      />
     </div>
   );
 };
