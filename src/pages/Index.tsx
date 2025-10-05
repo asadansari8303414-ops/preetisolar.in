@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Sun, Wrench, Users, Leaf, TrendingDown, Shield, Phone, Mail, MapPin, Cog } from "lucide-react";
+import { Sun, Wrench, Users, Leaf, TrendingDown, Shield, Phone, Mail, MapPin, Cog, Zap, FileText, Search, Settings, ShieldCheck, Award, Smartphone, Clock, GraduationCap, Battery } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -15,6 +15,7 @@ const contactSchema = z.object({
   name: z.string().min(1, "Naam zaruri hai").max(100, "Naam 100 characters se kam hona chahiye"),
   phone: z.string().min(10, "Valid phone number dalein").max(15, "Phone number 15 characters se kam hona chahiye"),
   email: z.string().email("Valid email address dalein").max(255),
+  serviceInterest: z.string().min(1, "Service select karein"),
   message: z.string().min(10, "Message kam se kam 10 characters ka ho").max(1000),
 });
 
@@ -28,6 +29,7 @@ const Index = () => {
       name: "",
       phone: "",
       email: "",
+      serviceInterest: "",
       message: "",
     },
   });
@@ -53,7 +55,7 @@ const Index = () => {
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
               Uttar Pradesh mein best solar panel aur atta chakki installation. Government subsidy ke saath bijli ke
-              bill mein 80% tak ki saving karein!
+              bill mein 90% tak ki saving karein!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -89,46 +91,68 @@ onClick={() =>
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <Card className="hover:shadow-lg transition-shadow">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300">
               <CardHeader>
-                <Sun className="h-12 w-12 text-primary mb-4" />
-                <CardTitle>Solar Panel Installation</CardTitle>
+                <Zap className="h-12 w-12 text-primary mb-4" />
+                <CardTitle>Solar System Installation</CardTitle>
                 <CardDescription>
-                  High-quality solar panels ka installation certified technicians ke saath. 25 saal ki
-                  warranty.
+                  On-Grid, Off-Grid & Hybrid Solar Solutions. High-efficiency panels with proper load calculation.
+                  Fast and professional installation with 25-year warranty.
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300">
               <CardHeader>
-                <Wrench className="h-12 w-12 text-secondary mb-4" />
+                <FileText className="h-12 w-12 text-accent mb-4" />
+                <CardTitle>Solar Subsidy Assistance</CardTitle>
+                <CardDescription>
+                  PM Surya Ghar Muft Bijli Yojana mein help. Step-by-step guidance for registration, documentation,
+                  and approval. 100% transparency in subsidy process.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300">
+              <CardHeader>
+                <Search className="h-12 w-12 text-secondary mb-4" />
+                <CardTitle>Site Inspection & Load Assessment</CardTitle>
+                <CardDescription>
+                  Free on-site visit to analyze your roof condition and energy needs. Expert report on suitable
+                  system size (1kW to 15kW).
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300">
+              <CardHeader>
+                <Wrench className="h-12 w-12 text-primary mb-4" />
                 <CardTitle>Maintenance & Support</CardTitle>
                 <CardDescription>
-                  Regular maintenance aur 24/7 customer support. Aapke system ko hamesha best
-                  condition mein rakhte hain.
+                  AMC (Annual Maintenance Contract) available. Regular cleaning, performance check, and inverter
+                  updates. 24×7 support helpline.
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300">
               <CardHeader>
-                <Users className="h-12 w-12 text-accent mb-4" />
-                <CardTitle>Expert Consultation</CardTitle>
+                <Settings className="h-12 w-12 text-accent mb-4" />
+                <CardTitle>Customized Solar Solutions</CardTitle>
                 <CardDescription>
-                  Free consultation aur customized solutions. Government subsidy claim mein bhi help
-                  karte hain.
+                  Residential | Commercial | Industrial | Agricultural. Battery-based systems for backup power.
+                  EV charging integration available.
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow border-primary/20">
+            <Card className="hover:shadow-lg transition-shadow hover:scale-105 duration-300 border-primary/20">
               <CardHeader>
                 <Cog className="h-12 w-12 text-primary mb-4" />
                 <CardTitle>Atta Chakki Solutions</CardTitle>
                 <CardDescription>
-                  Premium quality atta chakki installation. 9kW se shuru, sabhi motor brands available.
+                  Premium quality atta chakki installation. 9kW se shuru, sabhi motor brands available (Kirloskar, ABB, Havells).
                   Asan EMI par bhi available.
                 </CardDescription>
               </CardHeader>
@@ -147,41 +171,94 @@ onClick={() =>
       <section id="benefits" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Solar Energy Ke Fayde</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Kyon Choose Karein Humein</h2>
             <p className="text-muted-foreground text-lg">
-              Kyon solar energy aapke liye best choice hai
+              Best quality, service aur support - sab kuch ek jagah
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
+              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <ShieldCheck className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Government Approved Vendor</h3>
+              <p className="text-sm text-muted-foreground">
+                Trustworthy & registered for subsidy. Puri transparency ke saath kaam karte hain.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
+              <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+                <Award className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">High-Quality Components</h3>
+              <p className="text-sm text-muted-foreground">
+                Tier-1 panels & branded inverters (Havells, Loom, Luminous). Best quality guarantee.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
               <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                 <TrendingDown className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">80% Tak Bill Mein Saving</h3>
-              <p className="text-muted-foreground">
-                Apne monthly electricity bill ko drastically reduce karein aur paise bachayein.
+              <h3 className="text-lg font-semibold mb-2">
+                <span className="text-2xl font-bold text-primary">90%</span> Tak Bill Mein Saving
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Long-term savings with 25-year warranty panels. Apne paise bachayein.
               </p>
             </div>
 
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
+              <div className="h-16 w-16 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
+                <Smartphone className="h-8 w-8 text-secondary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Smart Monitoring App</h3>
+              <p className="text-sm text-muted-foreground">
+                Check power generation live on your phone. Real-time monitoring aur alerts.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
+              <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+                <Clock className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">
+                Quick Installation (<span className="text-primary font-bold">7-10 Days</span>)
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Fast professional installation within 7–10 working days after approval.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
+              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <GraduationCap className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Expert Team</h3>
+              <p className="text-sm text-muted-foreground">
+                Certified engineers & trained professionals. Experience aur expertise ka guarantee.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
               <div className="h-16 w-16 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
                 <Leaf className="h-8 w-8 text-secondary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Eco-Friendly & Clean</h3>
-              <p className="text-muted-foreground">
-                Environment ko bachayein aur carbon footprint ko reduce karein. Clean energy ka use
-                karein.
+              <h3 className="text-lg font-semibold mb-2">Eco-Friendly Energy</h3>
+              <p className="text-sm text-muted-foreground">
+                Reduce carbon footprint and save the planet. Clean energy ka use karein.
               </p>
             </div>
 
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
               <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
                 <Shield className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Government Subsidy</h3>
-              <p className="text-muted-foreground">
-                UP government se subsidy benefit lein. 1KW par ₹45,000 tak ka subsidy available hai.
+              <h3 className="text-lg font-semibold mb-2">Government Subsidy</h3>
+              <p className="text-sm text-muted-foreground">
+                UP government se subsidy benefit lein. 1KW par ₹45,000 tak ka subsidy available.
               </p>
             </div>
           </div>
@@ -289,6 +366,31 @@ onClick={() =>
                           <FormLabel>Email</FormLabel>
                           <FormControl>
                             <Input placeholder="your@email.com" type="email" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="serviceInterest"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Service Interest</FormLabel>
+                          <FormControl>
+                            <select
+                              {...field}
+                              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            >
+                              <option value="">Select karein...</option>
+                              <option value="solar-installation">Solar System Installation</option>
+                              <option value="subsidy-assistance">Subsidy Assistance</option>
+                              <option value="site-inspection">Site Inspection (Free)</option>
+                              <option value="amc-maintenance">AMC/Maintenance</option>
+                              <option value="chakki-installation">Chakki Installation</option>
+                              <option value="general">General Inquiry</option>
+                            </select>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
