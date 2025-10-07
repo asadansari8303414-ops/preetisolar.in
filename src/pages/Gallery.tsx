@@ -7,18 +7,20 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [solarImages, setSolarImages] = useState<{ id: number; title: string; url?: string }[]>([
-    { id: 1, title: "Residential Solar Panel Installation" },
-    { id: 2, title: "Commercial Solar Setup" },
-    { id: 3, title: "Rooftop Solar System" },
-    { id: 4, title: "Solar Panel Maintenance" },
+  const [solarImages, setSolarImages] = useState<{ id: number; title: string; url?: string; systemSize?: string; location?: string }[]>([
+    { id: 1, title: "5kW Residential Installation - Prayagraj", systemSize: "5kW", location: "Prayagraj" },
+    { id: 2, title: "10kW Commercial Setup - Varanasi", systemSize: "10kW", location: "Varanasi" },
+    { id: 3, title: "Installation Process - Mounting Structure", systemSize: "6kW", location: "Prayagraj" },
+    { id: 4, title: "3kW Rooftop Solar System", systemSize: "3kW", location: "Allahabad" },
+    { id: 5, title: "8kW Office Building Solar", systemSize: "8kW", location: "Lucknow" },
+    { id: 6, title: "Net Meter Installation Complete", systemSize: "5kW", location: "Prayagraj" },
   ]);
 
-  const [chakkiImages, setChakkiImages] = useState<{ id: number; title: string; url?: string }[]>([
-    { id: 1, title: "10kW Chakki Installation" },
-    { id: 2, title: "Commercial Chakki Setup" },
-    { id: 3, title: "Chakki Motor Installation" },
-    { id: 4, title: "Complete Chakki Unit" },
+  const [chakkiImages, setChakkiImages] = useState<{ id: number; title: string; url?: string; motorHP?: string; location?: string }[]>([
+    { id: 1, title: "10HP Chakki Installation - Prayagraj", motorHP: "10HP", location: "Prayagraj" },
+    { id: 2, title: "15HP Commercial Chakki Setup", motorHP: "15HP", location: "Varanasi" },
+    { id: 3, title: "7.5HP Chakki Motor Installation", motorHP: "7.5HP", location: "Allahabad" },
+    { id: 4, title: "Complete 10HP Chakki Unit", motorHP: "10HP", location: "Prayagraj" },
   ]);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>, category: 'solar' | 'chakki') => {
@@ -96,11 +98,28 @@ const Gallery = () => {
                       onClick={() => item.url && setSelectedImage(item.url)}
                     >
                       {item.url ? (
-                        <img src={item.url} alt={item.title} className="w-full h-full object-cover" />
+                        <>
+                          <img src={item.url} alt={item.title} className="w-full h-full object-cover" />
+                          {item.systemSize && (
+                            <div className="absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 rounded text-xs font-bold">
+                              {item.systemSize}
+                            </div>
+                          )}
+                          {item.location && (
+                            <div className="absolute bottom-2 left-2 bg-black/60 text-white px-2 py-1 rounded text-xs">
+                              📍 {item.location}
+                            </div>
+                          )}
+                        </>
                       ) : (
                         <div className="text-center p-6">
                           <p className="text-sm text-muted-foreground">Installation Photo</p>
                           <p className="font-semibold mt-2">{item.title}</p>
+                          {item.systemSize && (
+                            <div className="mt-2 inline-block bg-primary/10 text-primary px-3 py-1 rounded text-xs font-bold">
+                              {item.systemSize}
+                            </div>
+                          )}
                         </div>
                       )}
                       <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors" />
@@ -155,11 +174,28 @@ const Gallery = () => {
                       onClick={() => item.url && setSelectedImage(item.url)}
                     >
                       {item.url ? (
-                        <img src={item.url} alt={item.title} className="w-full h-full object-cover" />
+                        <>
+                          <img src={item.url} alt={item.title} className="w-full h-full object-cover" />
+                          {item.motorHP && (
+                            <div className="absolute top-2 left-2 bg-orange-500 text-white px-2 py-1 rounded text-xs font-bold">
+                              {item.motorHP}
+                            </div>
+                          )}
+                          {item.location && (
+                            <div className="absolute bottom-2 left-2 bg-black/60 text-white px-2 py-1 rounded text-xs">
+                              📍 {item.location}
+                            </div>
+                          )}
+                        </>
                       ) : (
                         <div className="text-center p-6">
                           <p className="text-sm text-muted-foreground">Installation Photo</p>
                           <p className="font-semibold mt-2">{item.title}</p>
+                          {item.motorHP && (
+                            <div className="mt-2 inline-block bg-orange-100 text-orange-600 px-3 py-1 rounded text-xs font-bold">
+                              {item.motorHP}
+                            </div>
+                          )}
                         </div>
                       )}
                       <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors" />

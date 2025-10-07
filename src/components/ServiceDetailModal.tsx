@@ -1,7 +1,9 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle, ArrowRight, Zap, Battery, Home } from "lucide-react";
+import SystemDiagram from "./SystemDiagram";
 
 interface ServiceDetail {
   title: string;
@@ -12,6 +14,7 @@ interface ServiceDetail {
   }[];
   pricing?: string;
   benefits: string[];
+  hasSystemTypes?: boolean;
 }
 
 interface ServiceDetailModalProps {
@@ -62,7 +65,8 @@ const serviceDetails: Record<string, ServiceDetail> = {
       "Free smart monitoring app",
       "Government subsidy assistance",
       "Professional installation team"
-    ]
+    ],
+    hasSystemTypes: true
   },
   "subsidy-assistance": {
     title: "Solar Subsidy Assistance - Puri Madad Karenge Hum",
@@ -270,6 +274,161 @@ const ServiceDetailModal = ({ open, onOpenChange, serviceType }: ServiceDetailMo
         
         <ScrollArea className="max-h-[60vh] pr-4">
           <div className="space-y-6">
+            {/* System Types Comparison - Only for Solar Installation */}
+            {service.hasSystemTypes && (
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold mb-4">🔌 Kaun Sa System Chunein?</h3>
+                
+                {/* On-Grid System */}
+                <Card className="border-primary/30 bg-primary/5">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Zap className="h-5 w-5 text-primary" />
+                      On-Grid System (सबसे सस्ता)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm mb-2"><strong>💡 Kya Hai:</strong> Seedha grid se juda hua, no battery</p>
+                        <p className="text-sm mb-2"><strong>📍 Best For:</strong> Jin areas mein light 20+ hours aati ho</p>
+                        <p className="text-sm mb-2"><strong>💰 Cost:</strong> Sabse sasta (₹60,000/kW se start)</p>
+                        <div className="mt-3 space-y-1">
+                          <p className="text-sm text-green-600">✓ Net metering se extra units bech sakte hain</p>
+                          <p className="text-sm text-green-600">✓ Minimal maintenance</p>
+                          <p className="text-sm text-green-600">✓ Quick ROI (3-4 years)</p>
+                          <p className="text-sm text-red-600">✗ Power cut mein solar bhi band ho jayega</p>
+                          <p className="text-sm text-red-600">✗ Night time mein grid electricity use hogi</p>
+                        </div>
+                      </div>
+                      <div>
+                        <SystemDiagram type="on-grid" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Off-Grid System */}
+                <Card className="border-orange-500/30 bg-orange-50/50 dark:bg-orange-950/20">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Battery className="h-5 w-5 text-orange-600" />
+                      Off-Grid System (पूर्ण स्वतंत्रता)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm mb-2"><strong>💡 Kya Hai:</strong> Poori tarah independent, battery ke saath</p>
+                        <p className="text-sm mb-2"><strong>📍 Best For:</strong> Remote areas, jahan power cut zyada hoti ho</p>
+                        <p className="text-sm mb-2"><strong>💰 Cost:</strong> Battery ke saath (₹90,000/kW + battery ₹80,000)</p>
+                        <div className="mt-3 space-y-1">
+                          <p className="text-sm text-green-600">✓ 24×7 guaranteed electricity</p>
+                          <p className="text-sm text-green-600">✓ Grid failures se independent</p>
+                          <p className="text-sm text-green-600">✓ Complete energy independence</p>
+                          <p className="text-sm text-red-600">✗ High initial cost</p>
+                          <p className="text-sm text-red-600">✗ Battery replacement har 5-7 saal mein</p>
+                          <p className="text-sm text-red-600">✗ Maintenance cost zyada</p>
+                        </div>
+                      </div>
+                      <div>
+                        <SystemDiagram type="off-grid" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Hybrid System */}
+                <Card className="border-green-500/30 bg-green-50/50 dark:bg-green-950/20">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Home className="h-5 w-5 text-green-600" />
+                      Hybrid System (सबसे अच्छा - Recommended ⭐)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm mb-2"><strong>💡 Kya Hai:</strong> Grid + Battery dono ka fayda</p>
+                        <p className="text-sm mb-2"><strong>📍 Best For:</strong> Commercial use, jahan power backup zaroori ho</p>
+                        <p className="text-sm mb-2"><strong>💰 Cost:</strong> ₹75,000/kW + battery (₹60,000-₹80,000)</p>
+                        <div className="mt-3 space-y-1">
+                          <p className="text-sm text-green-600">✓ Power cut mein battery backup</p>
+                          <p className="text-sm text-green-600">✓ Grid available hone par export bhi kar sakte hain</p>
+                          <p className="text-sm text-green-600">✓ Maximum savings with security</p>
+                          <p className="text-sm text-green-600">✓ Smart switching between grid and battery</p>
+                          <p className="text-sm text-orange-600">~ Most expensive option</p>
+                          <p className="text-sm text-orange-600">~ Complex installation</p>
+                        </div>
+                      </div>
+                      <div>
+                        <SystemDiagram type="hybrid" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Comparison Table */}
+                <Card className="bg-secondary/20">
+                  <CardHeader>
+                    <CardTitle className="text-lg">तुलना - Quick Comparison</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b">
+                            <th className="text-left p-2">Feature</th>
+                            <th className="text-center p-2">On-Grid</th>
+                            <th className="text-center p-2">Off-Grid</th>
+                            <th className="text-center p-2">Hybrid</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr className="border-b">
+                            <td className="p-2">Cost/kW</td>
+                            <td className="text-center p-2 text-green-600">₹60,000</td>
+                            <td className="text-center p-2 text-orange-600">₹90,000</td>
+                            <td className="text-center p-2">₹75,000</td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="p-2">Battery Required</td>
+                            <td className="text-center p-2">✗</td>
+                            <td className="text-center p-2 text-green-600">✓</td>
+                            <td className="text-center p-2 text-green-600">✓</td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="p-2">Power Backup</td>
+                            <td className="text-center p-2">✗</td>
+                            <td className="text-center p-2 text-green-600">✓</td>
+                            <td className="text-center p-2 text-green-600">✓</td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="p-2">Net Metering</td>
+                            <td className="text-center p-2 text-green-600">✓</td>
+                            <td className="text-center p-2">✗</td>
+                            <td className="text-center p-2 text-green-600">✓</td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="p-2">Best For</td>
+                            <td className="text-center p-2">Stable Grid</td>
+                            <td className="text-center p-2">Remote Areas</td>
+                            <td className="text-center p-2">Critical Power</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">ROI Period</td>
+                            <td className="text-center p-2 text-green-600">3-4 years</td>
+                            <td className="text-center p-2">5-7 years</td>
+                            <td className="text-center p-2">4-6 years</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
             {/* Steps */}
             <div className="space-y-4">
               {service.steps.map((step) => (

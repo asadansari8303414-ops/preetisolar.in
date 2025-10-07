@@ -2,14 +2,16 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Calculator as CalcIcon, IndianRupee, Zap, TrendingUp } from "lucide-react";
+import { Calculator as CalcIcon, IndianRupee, Zap, TrendingUp, MapPin, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { stateSubsidyData, calculateSubsidy } from "@/data/stateSubsidyData";
 
 const calculatorSchema = z.object({
+  state: z.string().min(1, "State select karein"),
   systemSize: z.string().min(1, "System size select karein"),
 });
 
@@ -33,11 +35,15 @@ const Calculator = () => {
   const form = useForm<CalculatorForm>({
     resolver: zodResolver(calculatorSchema),
     defaultValues: {
+      state: "",
       systemSize: "",
     },
   });
 
   const [results, setResults] = React.useState<{
+    state: string;
+    stateName: string;
+    scheme: string;
     systemSize: number;
     baseCost: number;
     subsidy: number;
@@ -46,11 +52,19 @@ const Calculator = () => {
     monthlySavings: number;
     yearlySavings: number;
     roi: number;
+    additionalBenefits: string[];
   } | null>(null);
 
   const onSubmit = (data: CalculatorForm) => {
     const systemSize = parseInt(data.systemSize);
-    const details = subsidyData[data.systemSize];
+    const selectedState = stateSubsidyData[data.state];
+    
+    // Base cost: ₹70,000 per kW (average market rate)
+    const baseCost = systemSize * 70000;
+    
+    // Calculate subsidy using state-specific data
+    const subsidy = calculateSubsidy(data.state, systemSize);
+    const afterSubsidy = baseCost - subsidy;
 
     // 1kW generates approximately 120 units per month
     const monthlyGeneration = systemSize * 120;
@@ -60,17 +74,21 @@ const Calculator = () => {
     const yearlySavings = monthlySavings * 12;
     
     // ROI calculation based on cost after subsidy
-    const roi = details.afterSubsidy / yearlySavings;
+    const roi = afterSubsidy / yearlySavings;
 
     setResults({
+      state: data.state,
+      stateName: selectedState.name,
+      scheme: selectedState.scheme,
       systemSize,
-      baseCost: details.baseCost,
-      subsidy: details.subsidy,
-      afterSubsidy: details.afterSubsidy,
+      baseCost,
+      subsidy,
+      afterSubsidy,
       monthlyGeneration,
       monthlySavings,
       yearlySavings,
       roi: Math.round(roi * 10) / 10,
+      additionalBenefits: selectedState.additionalBenefits,
     });
 
     toast.success("Calculator ready! Neeche results dekhen.");
@@ -86,20 +104,48 @@ const Calculator = () => {
               Solar Savings Calculator
             </h1>
             <p className="text-xl text-muted-foreground">
-              Uttar Pradesh ke liye special subsidy calculator
+              Sabhi states ke liye subsidy calculator - Apna state chunein
             </p>
           </div>
 
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle>Apna System Size Select Karein</CardTitle>
+              <CardTitle>Apna State aur System Size Select Karein</CardTitle>
               <CardDescription>
-                UP Government subsidy ke saath calculate karein
+                State-specific subsidy ke saath calculate karein
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="state"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4" />
+                          State Select Karein
+                        </FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="bg-background">
+                              <SelectValue placeholder="Apna state select karein" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-background">
+                            {Object.entries(stateSubsidyData).map(([key, value]) => (
+                              <SelectItem key={key} value={key}>
+                                {value.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
                   <FormField
                     control={form.control}
                     name="systemSize"
@@ -108,14 +154,14 @@ const Calculator = () => {
                         <FormLabel>System Size (kW)</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger className="bg-background">
                               <SelectValue placeholder="System size select karein" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent>
-                            {Object.keys(subsidyData).map((size) => (
-                              <SelectItem key={size} value={size}>
-                                {size} kW
+                          <SelectContent className="bg-background">
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((size) => (
+                              <SelectItem key={size} value={size.toString()}>
+                                {size} kW System
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -136,6 +182,28 @@ const Calculator = () => {
 
           {results && (
             <div className="space-y-6 animate-fade-in">
+              {/* State & Scheme Info */}
+              <Card className="border-primary bg-primary/5">
+                <CardContent className="pt-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-6 w-6 text-primary mt-1" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">Selected State</p>
+                        <p className="text-xl font-bold">{results.stateName}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Award className="h-6 w-6 text-primary mt-1" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">Scheme</p>
+                        <p className="text-lg font-semibold">{results.scheme}</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               <Card className="border-primary/50">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -208,12 +276,32 @@ const Calculator = () => {
                 </CardContent>
               </Card>
 
+              {/* Additional Benefits */}
+              <Card className="border-green-500/30 bg-green-50/50 dark:bg-green-950/20">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <Award className="h-5 w-5 text-green-600" />
+                    Additional Benefits ({results.stateName})
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {results.additionalBenefits.map((benefit, index) => (
+                      <div key={index} className="flex items-start gap-2">
+                        <span className="text-green-600 mt-1">✓</span>
+                        <p className="text-sm">{benefit}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
               <Card className="bg-primary/5 border-primary/20">
                 <CardContent className="pt-6">
                   <p className="text-sm text-muted-foreground text-center">
                     * Yeh estimates approximate hain. Actual savings location, usage, aur weather conditions par depend karti hai.
                     <br />
-                    ** Subsidy rates Uttar Pradesh government ke current scheme ke according hain.
+                    ** Subsidy rates {results.stateName} ke current scheme ke according hain. Final subsidy amount government approval par depend karta hai.
                   </p>
                 </CardContent>
               </Card>
