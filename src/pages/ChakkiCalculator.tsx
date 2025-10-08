@@ -77,7 +77,7 @@ const motorConfigs = {
 };
 
 const motorCompanies = [
-  { name: "Kirloskar", category: "Premium", warranty: "3 years" },
+  { name: "Kirloskar", category: "Premium", warranty: "5 years" },
   { name: "ABB", category: "Premium", warranty: "3 years" },
   { name: "Crompton", category: "Premium", warranty: "2 years" },
   { name: "Havells", category: "Mid-Range", warranty: "2 years" },
