@@ -1,10 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CreditCard, TrendingUp, CheckCircle } from "lucide-react";
-
 const FinanceSection = () => {
-  return (
-    <section id="finance" className="py-20 bg-muted/30">
+  return <section id="finance" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Financing Options</h2>
@@ -69,7 +67,7 @@ const FinanceSection = () => {
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
-                  <p className="text-sm">Up to 7 years tenure</p>
+                  <p className="text-sm">Up to 5 years tenure</p>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
@@ -96,11 +94,7 @@ const FinanceSection = () => {
                   <a href="tel:9277302997">📞 Call Now</a>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <a 
-                    href="https://wa.me/919277302997?text=Hello%20Preeti%20Solar%2C%20mujhe%20loan%20ke%20baare%20mein%20jaankari%20chahiye"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="https://wa.me/919277302997?text=Hello%20Preeti%20Solar%2C%20mujhe%20loan%20ke%20baare%20mein%20jaankari%20chahiye" target="_blank" rel="noopener noreferrer">
                     💬 WhatsApp Us
                   </a>
                 </Button>
@@ -109,8 +103,6 @@ const FinanceSection = () => {
           </CardContent>
         </Card>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default FinanceSection;
