@@ -14,7 +14,6 @@ import FinanceSection from "@/components/FinanceSection";
 import Reviews from "@/components/Reviews";
 import ServiceDetailModal from "@/components/ServiceDetailModal";
 import BenefitDetailModal from "@/components/BenefitDetailModal";
-
 const contactSchema = z.object({
   name: z.string().min(1, "Naam zaruri hai").max(100, "Naam 100 characters se kam hona chahiye"),
   phone: z.string().min(10, "Valid phone number dalein").max(15, "Phone number 15 characters se kam hona chahiye"),
@@ -33,18 +32,17 @@ const contactSchema = z.object({
   contactViaPhone: z.boolean().optional(),
   contactViaWhatsApp: z.boolean().optional(),
   contactViaEmail: z.boolean().optional(),
-  bestTimeToCall: z.string().optional(),
+  bestTimeToCall: z.string().optional()
 });
-
 type ContactForm = z.infer<typeof contactSchema>;
-
 const Index = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedBenefit, setSelectedBenefit] = useState<string | null>(null);
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -61,18 +59,16 @@ const Index = () => {
       contactViaPhone: false,
       contactViaWhatsApp: true,
       contactViaEmail: false,
-      bestTimeToCall: "morning",
-    },
+      bestTimeToCall: "morning"
+    }
   });
-
   const selectedServiceValue = form.watch("serviceInterest");
-
   const onSubmit = (data: ContactForm) => {
     console.log("Form submitted:", data);
-    
+
     // Show success animation
     setShowSuccessAnimation(true);
-    
+
     // Reset form after 5 seconds
     setTimeout(() => {
       setShowSuccessAnimation(false);
@@ -80,13 +76,11 @@ const Index = () => {
       setUploadedFile(null);
     }, 5000);
   };
-
   const sendToWhatsApp = () => {
     const data = form.getValues();
     const message = `Hi Preeti Solar,\nMera naam: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nService Interest: ${data.serviceInterest}\nMessage: ${data.message}${data.currentBill ? `\nCurrent Bill: ₹${data.currentBill}` : ""}${data.motorHP ? `\nMotor HP: ${data.motorHP}` : ""}`;
     window.open(`https://wa.me/919277302997?text=${encodeURIComponent(message)}`, "_blank");
   };
-
   const getEstimatedCost = () => {
     if (selectedServiceValue === "Solar Installation") {
       return "₹2,50,000 - ₹5,00,000";
@@ -95,9 +89,7 @@ const Index = () => {
     }
     return "Calculate ke liye service select karein";
   };
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10">
         <div className="container mx-auto px-4 py-20 text-center">
@@ -106,27 +98,14 @@ const Index = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
               Solar Energy & Atta Chakki Solutions
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Uttar Pradesh mein best solar panel aur atta chakki installation. Government subsidy ke saath bijli ke
-              bill mein 90% tak ki saving karein!
-            </p>
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">Uttar Pradesh mein best solar panel aur atta chakki installation. </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              >
+              <Button size="lg" onClick={() => document.getElementById("contact")?.scrollIntoView({
+              behavior: "smooth"
+            })}>
                 Free Consultation Lein
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() =>
-                  window.open(
-                    "https://wa.me/919277302997?text=Hello%20Preeti%20Solar%2C%20mujhe%20jaankari%20chahiye",
-                    "_blank"
-                  )
-                }
-              >
+              <Button size="lg" variant="outline" onClick={() => window.open("https://wa.me/919277302997?text=Hello%20Preeti%20Solar%2C%20mujhe%20jaankari%20chahiye", "_blank")}>
                 WhatsApp Par Baat Karein
               </Button>
             </div>
@@ -314,29 +293,15 @@ const Index = () => {
 
           {/* Quick Contact Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button
-              size="lg"
-              className="gap-2"
-              onClick={() => window.open("tel:+919277302997")}
-            >
+            <Button size="lg" className="gap-2" onClick={() => window.open("tel:+919277302997")}>
               <Phone className="h-5 w-5" />
               Call Now
             </Button>
-            <Button
-              size="lg"
-              variant="secondary"
-              className="gap-2"
-              onClick={() => window.open("https://wa.me/919277302997?text=Hello%20Preeti%20Solar", "_blank")}
-            >
+            <Button size="lg" variant="secondary" className="gap-2" onClick={() => window.open("https://wa.me/919277302997?text=Hello%20Preeti%20Solar", "_blank")}>
               <Smartphone className="h-5 w-5" />
               WhatsApp
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="gap-2"
-              onClick={() => window.open("mailto:preetisolar46@gmail.com")}
-            >
+            <Button size="lg" variant="outline" className="gap-2" onClick={() => window.open("mailto:preetisolar46@gmail.com")}>
               <Mail className="h-5 w-5" />
               Email
             </Button>
@@ -408,8 +373,7 @@ const Index = () => {
               </Card>
 
               {/* Cost Estimator Preview */}
-              {selectedServiceValue && (selectedServiceValue === "Solar Installation" || selectedServiceValue === "Atta Chakki Solutions") && (
-                <Card className="bg-accent/10 border-accent/30">
+              {selectedServiceValue && (selectedServiceValue === "Solar Installation" || selectedServiceValue === "Atta Chakki Solutions") && <Card className="bg-accent/10 border-accent/30">
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-2">
                       <Battery className="h-5 w-5" />
@@ -419,23 +383,17 @@ const Index = () => {
                   <CardContent>
                     <p className="text-2xl font-bold text-primary mb-2">{getEstimatedCost()}</p>
                     <p className="text-sm text-muted-foreground mb-3">Estimated range for {selectedServiceValue}</p>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        if (selectedServiceValue === "Solar Installation") {
-                          window.location.href = "/calculator";
-                        } else {
-                          window.location.href = "/chakki-calculator";
-                        }
-                      }}
-                    >
+                    <Button variant="outline" size="sm" className="w-full" onClick={() => {
+                  if (selectedServiceValue === "Solar Installation") {
+                    window.location.href = "/calculator";
+                  } else {
+                    window.location.href = "/chakki-calculator";
+                  }
+                }}>
                       Detailed Calculation Karein →
                     </Button>
                   </CardContent>
-                </Card>
-              )}
+                </Card>}
             </div>
 
             {/* Contact Form */}
@@ -447,8 +405,7 @@ const Index = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {showSuccessAnimation ? (
-                  <div className="text-center py-12 space-y-6 animate-fade-in">
+                {showSuccessAnimation ? <div className="text-center py-12 space-y-6 animate-fade-in">
                     <div className="relative inline-block">
                       <div className="h-24 w-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto animate-bounce">
                         <ShieldCheck className="h-12 w-12 text-primary" />
@@ -497,65 +454,45 @@ const Index = () => {
                         </div>
                       </div>
                     </div>
-                    <Button
-                      size="lg"
-                      className="gap-2"
-                      onClick={() => window.open("https://wa.me/919277302997?text=Hi,%20maine%20abhi%20form%20submit%20kiya%20hai", "_blank")}
-                    >
+                    <Button size="lg" className="gap-2" onClick={() => window.open("https://wa.me/919277302997?text=Hi,%20maine%20abhi%20form%20submit%20kiya%20hai", "_blank")}>
                       <Smartphone className="h-5 w-5" />
                       Continue on WhatsApp
                     </Button>
-                  </div>
-                ) : (
-                  <Form {...form}>
+                  </div> : <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="name" render={({
+                    field
+                  }) => <FormItem>
                             <FormLabel>Naam</FormLabel>
                             <FormControl>
                               <Input placeholder="Apna naam dalein" {...field} />
                             </FormControl>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
 
-                      <FormField
-                        control={form.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="phone" render={({
+                    field
+                  }) => <FormItem>
                             <FormLabel>Phone Number</FormLabel>
                             <FormControl>
                               <Input placeholder="9876543210" {...field} />
                             </FormControl>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
 
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="email" render={({
+                    field
+                  }) => <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
                               <Input placeholder="your@email.com" type="email" {...field} />
                             </FormControl>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
 
-                      <FormField
-                        control={form.control}
-                        name="serviceInterest"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="serviceInterest" render={({
+                    field
+                  }) => <FormItem>
                             <FormLabel>Service Interest</FormLabel>
                             <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
@@ -573,47 +510,32 @@ const Index = () => {
                               </SelectContent>
                             </Select>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
 
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="message" render={({
+                    field
+                  }) => <FormItem>
                             <FormLabel>Message</FormLabel>
                             <FormControl>
                               <Textarea placeholder="Apna message yahan likhein..." rows={3} {...field} />
                             </FormControl>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
 
                       {/* Dynamic Fields Based on Service */}
-                      {selectedServiceValue === "Solar Installation" && (
-                        <FormField
-                          control={form.control}
-                          name="currentBill"
-                          render={({ field }) => (
-                            <FormItem>
+                      {selectedServiceValue === "Solar Installation" && <FormField control={form.control} name="currentBill" render={({
+                    field
+                  }) => <FormItem>
                               <FormLabel>Current Monthly Bill (₹)</FormLabel>
                               <FormControl>
                                 <Input placeholder="e.g., 3000" type="number" {...field} />
                               </FormControl>
                               <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      )}
+                            </FormItem>} />}
 
-                      {selectedServiceValue === "Atta Chakki Solutions" && (
-                        <FormField
-                          control={form.control}
-                          name="motorHP"
-                          render={({ field }) => (
-                            <FormItem>
+                      {selectedServiceValue === "Atta Chakki Solutions" && <FormField control={form.control} name="motorHP" render={({
+                    field
+                  }) => <FormItem>
                               <FormLabel>Motor HP Preference</FormLabel>
                               <Select onValueChange={field.onChange} value={field.value}>
                                 <FormControl>
@@ -629,33 +551,21 @@ const Index = () => {
                                 </SelectContent>
                               </Select>
                               <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      )}
+                            </FormItem>} />}
 
-                      {selectedServiceValue === "Site Inspection" && (
-                        <FormField
-                          control={form.control}
-                          name="preferredDate"
-                          render={({ field }) => (
-                            <FormItem>
+                      {selectedServiceValue === "Site Inspection" && <FormField control={form.control} name="preferredDate" render={({
+                    field
+                  }) => <FormItem>
                               <FormLabel>Preferred Date & Time</FormLabel>
                               <FormControl>
                                 <Input type="date" {...field} />
                               </FormControl>
                               <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      )}
+                            </FormItem>} />}
 
-                      {selectedServiceValue === "Subsidy Assistance" && (
-                        <FormField
-                          control={form.control}
-                          name="alreadyApplied"
-                          render={({ field }) => (
-                            <FormItem>
+                      {selectedServiceValue === "Subsidy Assistance" && <FormField control={form.control} name="alreadyApplied" render={({
+                    field
+                  }) => <FormItem>
                               <FormLabel>Already Applied for Subsidy?</FormLabel>
                               <Select onValueChange={field.onChange} value={field.value}>
                                 <FormControl>
@@ -669,54 +579,38 @@ const Index = () => {
                                 </SelectContent>
                               </Select>
                               <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      )}
+                            </FormItem>} />}
 
-                      {selectedServiceValue === "Maintenance & Support" && (
-                        <FormField
-                          control={form.control}
-                          name="systemAge"
-                          render={({ field }) => (
-                            <FormItem>
+                      {selectedServiceValue === "Maintenance & Support" && <FormField control={form.control} name="systemAge" render={({
+                    field
+                  }) => <FormItem>
                               <FormLabel>System Age (Years)</FormLabel>
                               <FormControl>
                                 <Input placeholder="e.g., 2" type="number" {...field} />
                               </FormControl>
                               <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      )}
+                            </FormItem>} />}
 
                       {/* File Upload */}
                       <div className="space-y-2">
                         <label className="text-sm font-medium">Bijli Bill Upload Karein (Optional)</label>
                         <div className="flex items-center gap-2">
-                          <Input
-                            type="file"
-                            accept=".pdf,.jpg,.jpeg,.png"
-                            onChange={(e) => {
-                              const file = e.target.files?.[0];
-                              if (file) {
-                                if (file.size > 2 * 1024 * 1024) {
-                                  toast({
-                                    title: "File too large",
-                                    description: "Maximum 2MB allowed",
-                                    variant: "destructive",
-                                  });
-                                  return;
-                                }
-                                setUploadedFile(file);
-                              }
-                            }}
-                            className="text-sm"
-                          />
+                          <Input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={e => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          if (file.size > 2 * 1024 * 1024) {
+                            toast({
+                              title: "File too large",
+                              description: "Maximum 2MB allowed",
+                              variant: "destructive"
+                            });
+                            return;
+                          }
+                          setUploadedFile(file);
+                        }
+                      }} className="text-sm" />
                         </div>
-                        {uploadedFile && (
-                          <p className="text-xs text-primary">✓ {uploadedFile.name} uploaded</p>
-                        )}
+                        {uploadedFile && <p className="text-xs text-primary">✓ {uploadedFile.name} uploaded</p>}
                         <p className="text-xs text-muted-foreground">Max 2MB | PDF, JPG, PNG</p>
                       </div>
 
@@ -724,66 +618,37 @@ const Index = () => {
                       <div className="space-y-3 pt-2">
                         <label className="text-sm font-medium">Contact me via:</label>
                         <div className="flex flex-wrap gap-4">
-                          <FormField
-                            control={form.control}
-                            name="contactViaPhone"
-                            render={({ field }) => (
-                              <FormItem className="flex items-center gap-2 space-y-0">
+                          <FormField control={form.control} name="contactViaPhone" render={({
+                        field
+                      }) => <FormItem className="flex items-center gap-2 space-y-0">
                                 <FormControl>
-                                  <input
-                                    type="checkbox"
-                                    checked={field.value}
-                                    onChange={field.onChange}
-                                    className="h-4 w-4 rounded border-input"
-                                  />
+                                  <input type="checkbox" checked={field.value} onChange={field.onChange} className="h-4 w-4 rounded border-input" />
                                 </FormControl>
                                 <FormLabel className="!mt-0 font-normal cursor-pointer">Phone Call</FormLabel>
-                              </FormItem>
-                            )}
-                          />
-                          <FormField
-                            control={form.control}
-                            name="contactViaWhatsApp"
-                            render={({ field }) => (
-                              <FormItem className="flex items-center gap-2 space-y-0">
+                              </FormItem>} />
+                          <FormField control={form.control} name="contactViaWhatsApp" render={({
+                        field
+                      }) => <FormItem className="flex items-center gap-2 space-y-0">
                                 <FormControl>
-                                  <input
-                                    type="checkbox"
-                                    checked={field.value}
-                                    onChange={field.onChange}
-                                    className="h-4 w-4 rounded border-input"
-                                  />
+                                  <input type="checkbox" checked={field.value} onChange={field.onChange} className="h-4 w-4 rounded border-input" />
                                 </FormControl>
                                 <FormLabel className="!mt-0 font-normal cursor-pointer">WhatsApp</FormLabel>
-                              </FormItem>
-                            )}
-                          />
-                          <FormField
-                            control={form.control}
-                            name="contactViaEmail"
-                            render={({ field }) => (
-                              <FormItem className="flex items-center gap-2 space-y-0">
+                              </FormItem>} />
+                          <FormField control={form.control} name="contactViaEmail" render={({
+                        field
+                      }) => <FormItem className="flex items-center gap-2 space-y-0">
                                 <FormControl>
-                                  <input
-                                    type="checkbox"
-                                    checked={field.value}
-                                    onChange={field.onChange}
-                                    className="h-4 w-4 rounded border-input"
-                                  />
+                                  <input type="checkbox" checked={field.value} onChange={field.onChange} className="h-4 w-4 rounded border-input" />
                                 </FormControl>
                                 <FormLabel className="!mt-0 font-normal cursor-pointer">Email</FormLabel>
-                              </FormItem>
-                            )}
-                          />
+                              </FormItem>} />
                         </div>
                       </div>
 
                       {/* Best Time to Call */}
-                      <FormField
-                        control={form.control}
-                        name="bestTimeToCall"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="bestTimeToCall" render={({
+                    field
+                  }) => <FormItem>
                             <FormLabel>Best time to call:</FormLabel>
                             <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
@@ -798,27 +663,19 @@ const Index = () => {
                               </SelectContent>
                             </Select>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
 
                       <div className="flex gap-2 pt-2">
                         <Button type="submit" className="flex-1">
                           Submit Message
                         </Button>
-                        <Button
-                          type="button"
-                          variant="secondary"
-                          className="gap-2"
-                          onClick={sendToWhatsApp}
-                        >
+                        <Button type="button" variant="secondary" className="gap-2" onClick={sendToWhatsApp}>
                           <Smartphone className="h-4 w-4" />
                           WhatsApp
                         </Button>
                       </div>
                     </form>
-                  </Form>
-                )}
+                  </Form>}
               </CardContent>
             </Card>
           </div>
@@ -826,18 +683,8 @@ const Index = () => {
       </section>
 
       {/* Modals */}
-      <ServiceDetailModal 
-        open={!!selectedService} 
-        onOpenChange={(open) => !open && setSelectedService(null)} 
-        serviceType={selectedService || ""} 
-      />
-      <BenefitDetailModal 
-        open={!!selectedBenefit} 
-        onOpenChange={(open) => !open && setSelectedBenefit(null)} 
-        benefitType={selectedBenefit || ""} 
-      />
-    </div>
-  );
+      <ServiceDetailModal open={!!selectedService} onOpenChange={open => !open && setSelectedService(null)} serviceType={selectedService || ""} />
+      <BenefitDetailModal open={!!selectedBenefit} onOpenChange={open => !open && setSelectedBenefit(null)} benefitType={selectedBenefit || ""} />
+    </div>;
 };
-
 export default Index;
