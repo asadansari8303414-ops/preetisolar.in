@@ -78,12 +78,12 @@ const motorConfigs = {
 
 const motorCompanies = [
   { name: "Kirloskar", category: "Premium", warranty: "5 years" },
-  { name: "ABB", category: "Premium", warranty: "3 years" },
-  { name: "Crompton", category: "Premium", warranty: "2 years" },
-  { name: "Havells", category: "Mid-Range", warranty: "2 years" },
-  { name: "V-Guard", category: "Mid-Range", warranty: "2 years" },
-  { name: "Lakshmi", category: "Mid-Range", warranty: "18 months" },
-  { name: "Local Motors", category: "Budget", warranty: "1 year" },
+  { name: "ABB", category: "Premium", warranty: "5 years" },
+  { name: "Crompton", category: "Premium", warranty: "5 years" },
+  { name: "Havells", category: "Mid-Range", warranty: "5 years" },
+  { name: "V-Guard", category: "Mid-Range", warranty: "5 years" },
+  { name: "Lakshmi", category: "Mid-Range", warranty: "5 years" },
+  { name: "Local Motors", category: "Budget", warranty: "5 years" },
 ];
 
 const installationProcess = [
