@@ -4,8 +4,10 @@ import { Upload, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
 
 const Gallery = () => {
+  const { toast } = useToast();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [solarImages, setSolarImages] = useState<{ id: number; title: string; url?: string; systemSize?: string; location?: string }[]>([
     { id: 1, title: "5kW Residential Installation - Prayagraj", systemSize: "5kW", location: "Prayagraj" },
@@ -25,25 +27,64 @@ const Gallery = () => {
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>, category: 'solar' | 'chakki') => {
     const files = event.target.files;
-    if (files) {
-      Array.from(files).forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const newImage = {
-            id: Date.now() + Math.random(),
-            title: file.name.replace(/\.[^/.]+$/, ""),
-            url: e.target?.result as string,
-          };
-          
-          if (category === 'solar') {
-            setSolarImages((prev) => [...prev, newImage]);
-          } else {
-            setChakkiImages((prev) => [...prev, newImage]);
-          }
+    if (!files || files.length === 0) return;
+
+    let uploadedCount = 0;
+    const totalFiles = files.length;
+
+    Array.from(files).forEach((file) => {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        toast({
+          title: "Invalid file type",
+          description: `${file.name} is not an image file`,
+          variant: "destructive"
+        });
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = e.target?.result;
+        if (!result) return;
+
+        const newImage = {
+          id: Date.now() + Math.random(),
+          title: file.name.replace(/\.[^/.]+$/, ""),
+          url: result as string,
+          systemSize: category === 'solar' ? '5kW' : undefined,
+          motorHP: category === 'chakki' ? '10HP' : undefined,
+          location: 'Prayagraj'
         };
-        reader.readAsDataURL(file);
-      });
-    }
+        
+        if (category === 'solar') {
+          setSolarImages((prev) => [...prev, newImage]);
+        } else {
+          setChakkiImages((prev) => [...prev, newImage]);
+        }
+
+        uploadedCount++;
+        if (uploadedCount === totalFiles) {
+          toast({
+            title: "Upload successful!",
+            description: `${totalFiles} photo${totalFiles > 1 ? 's' : ''} upload ho ${totalFiles > 1 ? 'gaye' : 'gayi'}`,
+          });
+        }
+      };
+
+      reader.onerror = () => {
+        toast({
+          title: "Upload failed",
+          description: `Error reading ${file.name}`,
+          variant: "destructive"
+        });
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    // Reset input
+    event.target.value = '';
   };
 
   const handleDeleteImage = (id: number, category: 'solar' | 'chakki') => {
