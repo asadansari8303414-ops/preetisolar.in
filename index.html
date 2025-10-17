@@ -1,45 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>preetisolar.com</title>
-    <meta name="description" content="Lovable Generated Project">
-    <meta name="author" content="Lovable" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/K9FEJn1yGRfWW4TH818itCwuG4v1/social-images/social-1760074198106-Preeti solar logo.jpeg">
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/K9FEJn1yGRfWW4TH818itCwuG4v1/social-images/social-1760074198106-Preeti solar logo.jpeg">
-    <meta property="og:title" content="preetisolar.com">
-    <meta name="twitter:title" content="preetisolar.com">
-    <meta property="og:description" content="Lovable Generated Project">
-    <meta name="twitter:description" content="Lovable Generated Project">
-    <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/gpt-engineer-file-uploads/K9FEJn1yGRfWW4TH818itCwuG4v1/uploads/1760074180128-Preeti solar logo.jpeg">
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-
-    <!-- 👇 Ye Script Google Sheet connect karega -->
-    <script>
-      const scriptURL = 
-      "https://script.google.com/macros/s/AKfycbzvBSGKC7CaNix1GTkybBhVGcECf-k0Lfuh7tG43nca1ycJwy1riGXDrNW6bC-F9-9V_g/exec";
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const form = document.querySelector('form[name="contact-form"], form#contact-form');
-        if (form) {
-          form.addEventListener('submit', e => {
-            e.preventDefault();
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-              .then(() => alert("✅ Form submitted successfully!"))
-              .catch(() => alert("❌ Error submitting form!"));
-          });
-        }
-      });
-    </script>
-    <!-- 👆 Bas itna add karna hai -->
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preeti Solar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #f9f9f9, #e0f7fa);
+      margin: 0;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    h1 {
+      color: #00796b;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #444;
+      font-size: 1.2rem;
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    a {
+      color: #00796b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Preeti Solar ☀</h1>
+  <p>Your trusted partner for solar rooftop and energy solutions.</p>
+  <p>Website successfully hosted on <strong>GitHub Pages</strong>!</p>
+  <footer>
+    <p>© 2025 Preeti Solar | All rights reserved</p>
+    <p>Powered by <a href="https://github.com/asadansari-ops">asadansari-ops</a></p>
+  </footer>
+</body>
 </html>
