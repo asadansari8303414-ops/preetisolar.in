@@ -3,43 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Preeti Solar</title>
+  <title>My Website</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #f9f9f9, #e0f7fa);
-      margin: 0;
-      text-align: center;
-      padding: 60px 20px;
+      margin: 20px;
+      background: #f5f5f5;
     }
     h1 {
-      color: #00796b;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+      text-align: center;
     }
-    p {
-      color: #444;
-      font-size: 1.2rem;
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    footer {
-      margin-top: 60px;
-      font-size: 0.9rem;
-      color: #666;
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
-    a {
-      color: #00796b;
-      text-decoration: none;
+    button {
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #msg {
+      text-align: center;
+      margin-top: 15px;
       font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to Preeti Solar ☀</h1>
-  <p>Your trusted partner for solar rooftop and energy solutions.</p>
-  <p>Website successfully hosted on <strong>GitHub Pages</strong>!</p>
-  <footer>
-    <p>© 2025 Preeti Solar | All rights reserved</p>
-    <p>Powered by <a href="https://github.com/asadansari-ops">asadansari-ops</a></p>
-  </footer>
+  <h1>Welcome to My Website</h1>
+
+  <!-- 📩 Contact Form -->
+  <form id="dataForm">
+    <label>Naam:</label>
+    <input type="text" name="name" required>
+
+    <label>Phone Number:</label>
+    <input type="text" name="phone" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" required>
+
+    <label>Service Interest:</label>
+    <input type="text" name="service" required>
+
+    <label>Message:</label>
+    <textarea name="message"></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    // ✅ Google Apps Script ka Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwEdkyhXpIPykJMou1ClRk9N-C8evAuIEKhm1LAT8C5OWPuzmCqQJ0IFbeRnvDeb-Hi/exec";
+
+    const form = document.getElementById("dataForm");
+    const msg = document.getElementById("msg");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        .then(response => {
+          msg.innerHTML = "✅ Form submit ho gaya!";
+          form.reset();
+          setTimeout(() => msg.innerHTML = "", 3000);
+        })
+        .catch(error => {
+          msg.innerHTML = "❌ Error: " + error.message;
+        });
+    });
+  </script>
 </body>
 </html>
