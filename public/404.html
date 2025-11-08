@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=./#" />
+    <title>Redirecting…</title>
+    <script>
+      (function() {
+        // If the URL already contains a hash, just send to root
+        if (window.location.hash) {
+          window.location.replace('./#' + window.location.hash.replace(/^#/, ''));
+          return;
+        }
+        // Convert path to hash-based route for SPA
+        var path = window.location.pathname;
+        var search = window.location.search || '';
+        // Remove trailing 404.html if present
+        path = path.replace(/404\.html$/, '');
+        var newUrl = './#' + path + search;
+        window.location.replace(newUrl);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
