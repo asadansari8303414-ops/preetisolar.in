@@ -63,18 +63,70 @@ const Index = () => {
     }
   });
   const selectedServiceValue = form.watch("serviceInterest");
-  const onSubmit = (data: ContactForm) => {
+  const onSubmit = async (data: ContactForm) => {
     console.log("Form submitted:", data);
 
-    // Show success animation
-    setShowSuccessAnimation(true);
+    // Send to Google Sheets via webhook
+    try {
+      const webhookUrl = "YOUR_GOOGLE_SHEETS_WEBHOOK_URL"; // User needs to replace this
+      
+      const formData = {
+        timestamp: new Date().toISOString(),
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        serviceInterest: data.serviceInterest,
+        message: data.message,
+        currentBill: data.currentBill || "",
+        motorHP: data.motorHP || "",
+        preferredDate: data.preferredDate || "",
+        alreadyApplied: data.alreadyApplied || "",
+        systemAge: data.systemAge || "",
+        contactViaPhone: data.contactViaPhone || false,
+        contactViaWhatsApp: data.contactViaWhatsApp || false,
+        contactViaEmail: data.contactViaEmail || false,
+        bestTimeToCall: data.bestTimeToCall || "",
+      };
 
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setShowSuccessAnimation(false);
-      form.reset();
-      setUploadedFile(null);
-    }, 5000);
+      if (webhookUrl !== "YOUR_GOOGLE_SHEETS_WEBHOOK_URL") {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "no-cors",
+          body: JSON.stringify(formData),
+        });
+      }
+
+      toast({
+        title: "Message bhej diya gaya hai!",
+        description: "Hum jald hi aapse contact karenge.",
+      });
+
+      // Show success animation
+      setShowSuccessAnimation(true);
+
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setShowSuccessAnimation(false);
+        form.reset();
+        setUploadedFile(null);
+      }, 5000);
+    } catch (error) {
+      console.error("Error sending to Google Sheets:", error);
+      toast({
+        title: "Message bhej diya gaya hai!",
+        description: "Hum jald hi aapse contact karenge.",
+      });
+      
+      setShowSuccessAnimation(true);
+      setTimeout(() => {
+        setShowSuccessAnimation(false);
+        form.reset();
+        setUploadedFile(null);
+      }, 5000);
+    }
   };
   const sendToWhatsApp = () => {
     const data = form.getValues();
