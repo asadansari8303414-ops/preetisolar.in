@@ -68,7 +68,7 @@ const Index = () => {
 
     // Send to Google Sheets via webhook
     try {
-      const webhookUrl = "YOUR_GOOGLE_SHEETS_WEBHOOK_URL"; // User needs to replace this
+      const webhookUrl = "https://script.google.com/macros/s/AKfycbzuBfnLPpQvG1BpTzSG0P8CuvnWOYm64aWzIH3mtBZWGTz3h_lceM0yEpaeIfkqzmcg/exec";
       
       const formData = {
         timestamp: new Date().toISOString(),
@@ -88,16 +88,14 @@ const Index = () => {
         bestTimeToCall: data.bestTimeToCall || "",
       };
 
-      if (webhookUrl !== "YOUR_GOOGLE_SHEETS_WEBHOOK_URL") {
-        await fetch(webhookUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          mode: "no-cors",
-          body: JSON.stringify(formData),
-        });
-      }
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify(formData),
+      });
 
       toast({
         title: "Message bhej diya gaya hai!",
