@@ -14,6 +14,7 @@ import FinanceSection from "@/components/FinanceSection";
 import Reviews from "@/components/Reviews";
 import ServiceDetailModal from "@/components/ServiceDetailModal";
 import BenefitDetailModal from "@/components/BenefitDetailModal";
+import { useNavigate } from "react-router-dom";
 const contactSchema = z.object({
   name: z.string().min(1, "Naam zaruri hai").max(100, "Naam 100 characters se kam hona chahiye"),
   phone: z.string().min(10, "Valid phone number dalein").max(15, "Phone number 15 characters se kam hona chahiye"),
@@ -36,9 +37,8 @@ const contactSchema = z.object({
 });
 type ContactForm = z.infer<typeof contactSchema>;
 const Index = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedBenefit, setSelectedBenefit] = useState<string | null>(null);
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
