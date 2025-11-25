@@ -41,11 +41,6 @@
         justify-content: center;
         align-items: center;
         z-index: 9999;
-        transition: opacity 0.5s ease-out;
-      }
-      #loading-screen.hidden {
-        opacity: 0;
-        pointer-events: none;
       }
       .loader {
         width: 50px;
@@ -65,7 +60,23 @@
         font-size: 18px;
         font-weight: 600;
       }
+      #root {
+        min-height: 100vh;
+      }
     </style>
+    <script>
+      // Auto-hide loading screen after max 3 seconds
+      setTimeout(function() {
+        var loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+          loadingScreen.style.transition = 'opacity 0.5s';
+          loadingScreen.style.opacity = '0';
+          setTimeout(function() {
+            loadingScreen.style.display = 'none';
+          }, 500);
+        }
+      }, 3000);
+    </script>
   </head>
 
   <body>
