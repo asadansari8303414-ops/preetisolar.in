@@ -391,6 +391,94 @@
         100% { width: 100%; }
       }
       
+      /* Powered house icon */
+      .powered-house {
+        margin-top: 30px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .house-icon {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        animation: housePulse 1.5s ease-in-out infinite;
+      }
+      
+      .house-icon svg {
+        width: 100%;
+        height: 100%;
+        fill: none;
+        stroke: #22c55e;
+        stroke-width: 2;
+        filter: drop-shadow(0 0 10px #22c55e) drop-shadow(0 0 20px #22c55e);
+      }
+      
+      @keyframes housePulse {
+        0%, 100% { 
+          transform: scale(1);
+          filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.5));
+        }
+        50% { 
+          transform: scale(1.1);
+          filter: drop-shadow(0 0 25px rgba(34, 197, 94, 0.9));
+        }
+      }
+      
+      .house-glow {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: glowPulse 1.5s ease-in-out infinite;
+      }
+      
+      @keyframes glowPulse {
+        0%, 100% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.3); opacity: 1; }
+      }
+      
+      .power-label {
+        margin-top: 10px;
+        color: #22c55e;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        animation: textPulse 1.5s ease-in-out infinite;
+      }
+      
+      /* Energy line connecting to house */
+      .energy-line {
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(to bottom, transparent, #22c55e);
+        margin-bottom: 5px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .energy-line::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background: #22c55e;
+        box-shadow: 0 0 10px #22c55e;
+        animation: energyDown 1s ease-in-out infinite;
+      }
+      
+      @keyframes energyDown {
+        0% { top: -10px; opacity: 1; }
+        100% { top: 40px; opacity: 0; }
+      }
+      
       #root {
         min-height: 100vh;
       }
@@ -464,6 +552,17 @@
       <div class="loading-subtitle">☀️ Sun → ⚡ Electricity</div>
       <div class="progress-container">
         <div class="progress-bar"></div>
+      </div>
+      <!-- Powered house -->
+      <div class="powered-house">
+        <div class="energy-line"></div>
+        <div class="house-glow"></div>
+        <div class="house-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+        </div>
+        <div class="power-label">POWERED</div>
       </div>
     </div>
     <div id="root"></div>
