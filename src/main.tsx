@@ -5,13 +5,18 @@ import "./index.css";
 
 // Hide loading screen function
 const hideLoadingScreen = () => {
-  const loadingScreen = document.getElementById('loading-screen');
-  if (loadingScreen) {
-    loadingScreen.style.transition = 'opacity 0.5s';
-    loadingScreen.style.opacity = '0';
-    setTimeout(() => {
-      loadingScreen.style.display = 'none';
-    }, 500);
+  // Use global function if available
+  if (typeof (window as any).hideLoadingScreen === 'function') {
+    (window as any).hideLoadingScreen();
+  } else {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen && loadingScreen.style.display !== 'none') {
+      loadingScreen.style.transition = 'opacity 0.5s';
+      loadingScreen.style.opacity = '0';
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+      }, 500);
+    }
   }
 };
 
