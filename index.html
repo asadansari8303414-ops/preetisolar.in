@@ -484,17 +484,32 @@
       }
     </style>
     <script>
-      // Auto-hide loading screen after max 3 seconds
-      setTimeout(function() {
+      // Hide loading screen function
+      window.hideLoadingScreen = function() {
         var loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
+        if (loadingScreen && loadingScreen.style.display !== 'none') {
           loadingScreen.style.transition = 'opacity 0.5s';
           loadingScreen.style.opacity = '0';
           setTimeout(function() {
             loadingScreen.style.display = 'none';
           }, 500);
         }
-      }, 3000);
+      };
+      
+      // Auto-hide loading screen after max 5 seconds (fallback)
+      setTimeout(function() {
+        window.hideLoadingScreen();
+      }, 5000);
+      
+      // Also hide on DOMContentLoaded if React hasn't loaded yet
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          var root = document.getElementById('root');
+          if (root && root.children.length > 0) {
+            window.hideLoadingScreen();
+          }
+        }, 500);
+      });
     </script>
   </head>
 
