@@ -250,8 +250,8 @@ const Index = () => {
                 <Zap className="h-12 w-12 text-primary mb-4 transition-transform group-hover:scale-110" />
                 <CardTitle>Solar System Installation</CardTitle>
                 <CardDescription>
-                  On-Grid, Off-Grid & Hybrid Solar Solutions. High-efficiency panels with proper load
-                  calculation. Fast and professional installation with 25-year warranty.
+                  On-Grid, Off-Grid & Hybrid systems — high-efficiency panels, smart load calculation,
+                  aur 25 saal ki warranty ke saath professional installation.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -265,8 +265,8 @@ const Index = () => {
                 <FileText className="h-12 w-12 text-accent mb-4 transition-transform group-hover:scale-110" />
                 <CardTitle>Solar Subsidy Assistance</CardTitle>
                 <CardDescription>
-                  PM Surya Ghar Muft Bijli Yojana mein help. Step-by-step guidance for registration,
-                  documentation, and approval. 100% transparency in subsidy process.
+                  PM Surya Ghar Muft Bijli Yojana — registration se lekar approval tak poora support.
+                  100% transparent process, ₹78,000 tak ki subsidy.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -325,8 +325,8 @@ const Index = () => {
                 <Cog className="h-12 w-12 text-primary mb-4 transition-transform group-hover:scale-110" />
                 <CardTitle>Atta Chakki Solutions</CardTitle>
                 <CardDescription>
-                  Premium quality atta chakki installation. 9kW se shuru, sabhi motor brands available
-                  (Kirloskar, ABB, Havells). Asan EMI par bhi available.
+                  Premium atta chakki setup — 5HP se 15HP motor options, top brands, solar-powered
+                  system, EMI ke saath.
                 </CardDescription>
               </CardHeader>
             </Card>
