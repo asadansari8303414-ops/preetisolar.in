@@ -233,10 +233,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Humare Services - Detail Mein Jaanein
+              Humare Smart Services
             </h2>
             <p className="text-muted-foreground text-lg">
-              Solar energy aur atta chakki - dono solutions ek jagah. Click karein detail ke liye!
+              Solar + Atta Chakki — complete solution ek jagah. Card pe click karein details ke liye!
             </p>
           </div>
 
@@ -345,10 +345,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Kyon Choose Karein Humein - Benefits Detail Mein
+              Kyon Preeti Solar Choose Karein?
             </h2>
             <p className="text-muted-foreground text-lg">
-              Har benefit ko detail mein samjhein - click karein!
+              Har benefit ko detail mein samjhein — card pe click karein!
             </p>
           </div>
 
@@ -456,14 +456,14 @@ const Index = () => {
       <section id="contact" className="py-20 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-8 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact Karein</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Abhi Contact Karein</h2>
             <p className="text-muted-foreground text-lg">
-              Humse baat karein aur apne solar journey ko shuru karein
+              Aapka solar journey shuru karein — bilkul free consultation!
             </p>
             <div className="flex items-center justify-center gap-2 mt-4 text-sm">
               <Clock className="h-4 w-4 text-primary" />
               <span className="text-primary font-semibold">
-                We respond within 2 hours | 24×7 Support Available
+                2 hours mein response | 24×7 support available
               </span>
             </div>
           </div>
