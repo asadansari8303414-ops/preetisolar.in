@@ -4,6 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useNavigate } from "react-router-dom";
 
+import solarHeroAsset from "@/assets/solar-hero.jpg.asset.json";
+
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -188,7 +191,7 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
               Uttar Pradesh mein best solar panel aur atta chakki installation.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in mb-12" style={{ animationDelay: "0.4s" }}>
               <Button
                 size="lg"
                 className="hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl"
@@ -212,9 +215,21 @@ const Index = () => {
                 WhatsApp Par Baat Karein
               </Button>
             </div>
+            <div className="animate-fade-in max-w-5xl mx-auto" style={{ animationDelay: "0.6s" }}>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/20 hover:shadow-primary/20 hover:shadow-2xl transition-shadow duration-500">
+                <img
+                  src={solarHeroAsset.url}
+                  alt="Preeti Solar Panel Installation in Uttar Pradesh"
+                  className="w-full h-auto max-h-[500px] object-cover"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* Services Section */}
       <section id="services" className="py-20 bg-background">
