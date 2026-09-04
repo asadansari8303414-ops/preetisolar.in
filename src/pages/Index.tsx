@@ -361,7 +361,7 @@ const Index = () => {
               <ShieldCheck className="h-12 w-12 text-primary mb-4 transition-transform hover:scale-110" />
               <h3 className="text-xl font-semibold mb-2">Government Approved Vendor</h3>
               <p className="text-muted-foreground">
-                Trustworthy & registered for subsidy. Aapki subsidy 100% pakki hai.
+                Authorized vendor — aapki subsidy 100% pakki aur process bilkul smooth.
               </p>
             </Card>
 
@@ -383,9 +383,9 @@ const Index = () => {
               style={{ animationDelay: "0.3s" }}
             >
               <TrendingDown className="h-12 w-12 text-primary mb-4 transition-transform hover:scale-110" />
-              <h3 className="text-xl font-semibold mb-2">Save Up to 90% Tak Bill Mein Saving</h3>
+              <h3 className="text-xl font-semibold mb-2">90% Tak Bijli Bill Bachayein</h3>
               <p className="text-muted-foreground">
-                Long-term savings with 25-year warranty panels. Bijli ka bill 10% tak aa jayega!
+                25 saal ki warranty wale panels — bijli ka bill sirf 10% tak laayein.
               </p>
             </Card>
 
@@ -603,9 +603,9 @@ const Index = () => {
             {/* Contact Form */}
             <Card className="lg:col-span-2 animate-fade-in hover:shadow-lg transition-shadow duration-300" style={{ animationDelay: "0.4s" }}>
               <CardHeader>
-                <CardTitle>Message Bhejein</CardTitle>
+                <CardTitle>Quick Enquiry</CardTitle>
                 <CardDescription>
-                  Apni details share karein aur hum aapko jaldi contact karenge
+                  Apni details bharain — hum 2 hours mein aapko call karenge
                 </CardDescription>
               </CardHeader>
               <CardContent>
