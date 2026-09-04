@@ -192,11 +192,11 @@ const Index = () => {
         <div className="container mx-auto px-4 py-20 text-center relative z-10">
           <div className="animate-fade-in">
             <Sun className="h-20 w-20 text-primary mx-auto mb-6 animate-pulse drop-shadow-lg" />
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent drop-shadow-sm">
-              Solar Energy & Atta Chakki Solutions
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent drop-shadow-sm leading-tight">
+              Solar Power + Atta Chakki<br className="hidden md:block" /> Ek Smart Choice
             </h1>
             <p className="text-xl md:text-2xl font-medium text-foreground/90 mb-8 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              Uttar Pradesh mein best solar panel aur atta chakki installation.
+              Uttar Pradesh ka trusted solar partner — ghar ki bijli bill bachayein, atta chakki business shuru karein.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in mb-12" style={{ animationDelay: "0.4s" }}>
@@ -207,7 +207,7 @@ const Index = () => {
                   document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                 }
               >
-                Free Consultation Lein
+                Free Quote Lein
               </Button>
               <Button
                 size="lg"
@@ -220,7 +220,7 @@ const Index = () => {
                   )
                 }
               >
-                WhatsApp Par Baat Karein
+                WhatsApp Pe Chat Karein
               </Button>
             </div>
           </div>
@@ -233,10 +233,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Humare Services - Detail Mein Jaanein
+              Humare Smart Services
             </h2>
             <p className="text-muted-foreground text-lg">
-              Solar energy aur atta chakki - dono solutions ek jagah. Click karein detail ke liye!
+              Solar + Atta Chakki — complete solution ek jagah. Card pe click karein details ke liye!
             </p>
           </div>
 
@@ -250,8 +250,8 @@ const Index = () => {
                 <Zap className="h-12 w-12 text-primary mb-4 transition-transform group-hover:scale-110" />
                 <CardTitle>Solar System Installation</CardTitle>
                 <CardDescription>
-                  On-Grid, Off-Grid & Hybrid Solar Solutions. High-efficiency panels with proper load
-                  calculation. Fast and professional installation with 25-year warranty.
+                  On-Grid, Off-Grid & Hybrid systems — high-efficiency panels, smart load calculation,
+                  aur 25 saal ki warranty ke saath professional installation.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -265,8 +265,8 @@ const Index = () => {
                 <FileText className="h-12 w-12 text-accent mb-4 transition-transform group-hover:scale-110" />
                 <CardTitle>Solar Subsidy Assistance</CardTitle>
                 <CardDescription>
-                  PM Surya Ghar Muft Bijli Yojana mein help. Step-by-step guidance for registration,
-                  documentation, and approval. 100% transparency in subsidy process.
+                  PM Surya Ghar Muft Bijli Yojana — registration se lekar approval tak poora support.
+                  100% transparent process, ₹78,000 tak ki subsidy.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -325,8 +325,8 @@ const Index = () => {
                 <Cog className="h-12 w-12 text-primary mb-4 transition-transform group-hover:scale-110" />
                 <CardTitle>Atta Chakki Solutions</CardTitle>
                 <CardDescription>
-                  Premium quality atta chakki installation. 9kW se shuru, sabhi motor brands available
-                  (Kirloskar, ABB, Havells). Asan EMI par bhi available.
+                  Premium atta chakki setup — 5HP se 15HP motor options, top brands, solar-powered
+                  system, EMI ke saath.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -345,10 +345,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Kyon Choose Karein Humein - Benefits Detail Mein
+              Kyon Preeti Solar Choose Karein?
             </h2>
             <p className="text-muted-foreground text-lg">
-              Har benefit ko detail mein samjhein - click karein!
+              Har benefit ko detail mein samjhein — card pe click karein!
             </p>
           </div>
 
@@ -361,7 +361,7 @@ const Index = () => {
               <ShieldCheck className="h-12 w-12 text-primary mb-4 transition-transform hover:scale-110" />
               <h3 className="text-xl font-semibold mb-2">Government Approved Vendor</h3>
               <p className="text-muted-foreground">
-                Trustworthy & registered for subsidy. Aapki subsidy 100% pakki hai.
+                Authorized vendor — aapki subsidy 100% pakki aur process bilkul smooth.
               </p>
             </Card>
 
@@ -383,9 +383,9 @@ const Index = () => {
               style={{ animationDelay: "0.3s" }}
             >
               <TrendingDown className="h-12 w-12 text-primary mb-4 transition-transform hover:scale-110" />
-              <h3 className="text-xl font-semibold mb-2">Save Up to 90% Tak Bill Mein Saving</h3>
+              <h3 className="text-xl font-semibold mb-2">90% Tak Bijli Bill Bachayein</h3>
               <p className="text-muted-foreground">
-                Long-term savings with 25-year warranty panels. Bijli ka bill 10% tak aa jayega!
+                25 saal ki warranty wale panels — bijli ka bill sirf 10% tak laayein.
               </p>
             </Card>
 
@@ -456,14 +456,14 @@ const Index = () => {
       <section id="contact" className="py-20 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-8 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact Karein</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Abhi Contact Karein</h2>
             <p className="text-muted-foreground text-lg">
-              Humse baat karein aur apne solar journey ko shuru karein
+              Aapka solar journey shuru karein — bilkul free consultation!
             </p>
             <div className="flex items-center justify-center gap-2 mt-4 text-sm">
               <Clock className="h-4 w-4 text-primary" />
               <span className="text-primary font-semibold">
-                We respond within 2 hours | 24×7 Support Available
+                2 hours mein response | 24×7 support available
               </span>
             </div>
           </div>
@@ -603,9 +603,9 @@ const Index = () => {
             {/* Contact Form */}
             <Card className="lg:col-span-2 animate-fade-in hover:shadow-lg transition-shadow duration-300" style={{ animationDelay: "0.4s" }}>
               <CardHeader>
-                <CardTitle>Message Bhejein</CardTitle>
+                <CardTitle>Quick Enquiry</CardTitle>
                 <CardDescription>
-                  Apni details share karein aur hum aapko jaldi contact karenge
+                  Apni details bharain — hum 2 hours mein aapko call karenge
                 </CardDescription>
               </CardHeader>
               <CardContent>
