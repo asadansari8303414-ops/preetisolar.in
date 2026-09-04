@@ -180,17 +180,25 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        <img
+          src={solarHeroAsset.url}
+          alt="Preeti Solar Panel Installation in Uttar Pradesh"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-background/70 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background" />
         <div className="container mx-auto px-4 py-20 text-center relative z-10">
           <div className="animate-fade-in">
-            <Sun className="h-20 w-20 text-primary mx-auto mb-6 animate-pulse" />
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+            <Sun className="h-20 w-20 text-primary mx-auto mb-6 animate-pulse drop-shadow-lg" />
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent drop-shadow-sm">
               Solar Energy & Atta Chakki Solutions
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <p className="text-xl md:text-2xl font-medium text-foreground/90 mb-8 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
               Uttar Pradesh mein best solar panel aur atta chakki installation.
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in mb-12" style={{ animationDelay: "0.4s" }}>
               <Button
                 size="lg"
@@ -214,17 +222,6 @@ const Index = () => {
               >
                 WhatsApp Par Baat Karein
               </Button>
-            </div>
-            <div className="animate-fade-in max-w-5xl mx-auto" style={{ animationDelay: "0.6s" }}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/20 hover:shadow-primary/20 hover:shadow-2xl transition-shadow duration-500">
-                <img
-                  src={solarHeroAsset.url}
-                  alt="Preeti Solar Panel Installation in Uttar Pradesh"
-                  className="w-full h-auto max-h-[500px] object-cover"
-                  loading="eager"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none" />
-              </div>
             </div>
           </div>
         </div>
