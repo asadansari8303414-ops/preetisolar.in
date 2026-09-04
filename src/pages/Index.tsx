@@ -192,11 +192,11 @@ const Index = () => {
         <div className="container mx-auto px-4 py-20 text-center relative z-10">
           <div className="animate-fade-in">
             <Sun className="h-20 w-20 text-primary mx-auto mb-6 animate-pulse drop-shadow-lg" />
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent drop-shadow-sm">
-              Solar Energy & Atta Chakki Solutions
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent drop-shadow-sm leading-tight">
+              Solar Power + Atta Chakki<br className="hidden md:block" /> Ek Smart Choice
             </h1>
             <p className="text-xl md:text-2xl font-medium text-foreground/90 mb-8 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              Uttar Pradesh mein best solar panel aur atta chakki installation.
+              Uttar Pradesh ka trusted solar partner — ghar ki bijli bill bachayein, atta chakki business shuru karein.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in mb-12" style={{ animationDelay: "0.4s" }}>
@@ -207,7 +207,7 @@ const Index = () => {
                   document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                 }
               >
-                Free Consultation Lein
+                Free Quote Lein
               </Button>
               <Button
                 size="lg"
@@ -220,7 +220,7 @@ const Index = () => {
                   )
                 }
               >
-                WhatsApp Par Baat Karein
+                WhatsApp Pe Chat Karein
               </Button>
             </div>
           </div>
