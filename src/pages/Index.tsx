@@ -223,17 +223,6 @@ const Index = () => {
                 WhatsApp Par Baat Karein
               </Button>
             </div>
-            <div className="animate-fade-in max-w-5xl mx-auto" style={{ animationDelay: "0.6s" }}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/20 hover:shadow-primary/20 hover:shadow-2xl transition-shadow duration-500">
-                <img
-                  src={solarHeroAsset.url}
-                  alt="Preeti Solar Panel Installation in Uttar Pradesh"
-                  className="w-full h-auto max-h-[500px] object-cover"
-                  loading="eager"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none" />
-              </div>
-            </div>
           </div>
         </div>
       </section>
